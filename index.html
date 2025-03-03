@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness and Workout Plans</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        form {
+            width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fitness and Workout Plans</h1>
+        <p>Registration Number: XYZ123</p>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('register')">Register</a></li>
+                <li><a href="#" onclick="showPage('login')">Login</a></li>
+                <li><a href="#" onclick="showPage('exit')">Exit</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="home" class="content">
+        <h2>My Resume</h2>
+        <p>Download my resume below:</p>
+        <a href="C:\Users\Krishna\Downloads\workout website\Fitness and Workout Plans resume (1).pdf" class="btn" download>📄 Download Resume</a>
+    </div>
+
+    <div id="register" class="content hidden">
+        <h2>Register for Fitness Plan</h2>
+        <form onsubmit="handleRegister(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id="login" class="content hidden">
+        <h2>Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="email" required>
+            
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div id="exit" class="content hidden">
+        <h2>Thank You for Visiting!</h2>
+        <p>Click below to exit.</p>
+        <button onclick="window.close()">Exit</button>
+    </div>
+
+    <footer>
+        <a href="#" onclick="showPage('register')">Register</a> | <a href="#" onclick="showPage('login')">Login</a>
+    </footer>
+
+    <script>
+        // Function to show the selected page and hide others
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.content').forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show the selected page
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Function to handle registration form submission
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            alert(`Registration Successful!\nName: ${name}\nEmail: ${email}`);
+            showPage('home'); // Redirect to home after registration
+        }
+
+        // Function to handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            alert(`Login Successful!\nEmail: ${email}`);
+            showPage('home'); // Redirect to home after login
+        }
+
+        // Show the home page by default when the page loads
+        window.onload = () => showPage('home');
+    </script>
+</body>
+</html>
